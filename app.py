@@ -4,7 +4,7 @@ import secrets
 import string
 
 # Sets Page Configuration
-st.set_page_config(page_title="Password Checker & Generator", page_icon="🗝")
+st.set_page_config(page_title="Password Checker & Generator", page_icon="🔓")
 
 # Page Title
 st.title("🔐 Password Checker & Generator")
@@ -64,11 +64,11 @@ if password:
         message = "❌ Password must contain **at least one special character (@#$%&!?)**."
         strength = "Weak"
     else:
-        message_success = f"## ✅ Your password is **strong**! 🎉 `{password}`"
         strength = "Strong"
+        st.markdown(f"## ✅ Your password is **strong**! 🎉 `{password}`")
 
-    st.warning(message)
-    st.markdown(message_success)
+    if strength in ["Very Weak", "Weak"]:
+        st.warning(message)
 
     # Estimate cracking time for user input password
     st.info(estimate_crack_time(password))
@@ -76,7 +76,7 @@ if password:
 # Generate a strong password
 st.subheader("Generate a Strong Password")
 
-length = st.slider("Select Length:", 0, 167)
+length = st.slider("Select Length:", 0, 69)
 
 # Generate button
 if st.button("Generate Password"):
