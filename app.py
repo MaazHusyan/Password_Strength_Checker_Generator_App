@@ -64,10 +64,11 @@ if password:
         message = "❌ Password must contain **at least one special character (@#$%&!?)**."
         strength = "Weak"
     else:
-        message = f"## ✅ Your password is **strong**! 🎉 `{password}`"
+        message_success = f"## ✅ Your password is **strong**! 🎉 `{password}`"
         strength = "Strong"
 
-    st.markdown(message)
+    st.warning(message)
+    st.markdown(message_success)
 
     # Estimate cracking time for user input password
     st.info(estimate_crack_time(password))
