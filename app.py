@@ -11,7 +11,14 @@ st.title("🔐 Password Checker & Generator")
 st.subheader("Check your password strength")
 
 # User password input
-password = st.text_input("Enter Password:", help="💝")
+password = st.text_input("Enter Password:", help="👽")
+
+# Some common passwords
+common_passwords = {
+    "123456", "password", "123456789", "qwerty", "12345678", "111111", "123123",
+    "abc123", "password1", "1234", "letmein", "monkey", "football", "iloveyou",
+    "admin", "welcome", "sunshine", "dragon", "princess", "qwerty123", "654321","unlock"
+}
 
 # Function to estimate time to crack password
 def estimate_crack_time(password):
@@ -38,7 +45,10 @@ def estimate_crack_time(password):
 
 # Password Strength Check
 if password:
-    if len(password) < 8:
+    if password.lower() in common_passwords :
+        message = "❌ This password is **too common!** 🚨 Choose a more secure one."
+        strength = "Very Weak"
+    elif len(password) < 8:
         message = "❌ Password must be at least **8 characters long**."
         strength = "Weak"
     elif not re.search(r"[A-Z]", password):
@@ -54,7 +64,7 @@ if password:
         message = "❌ Password must contain **at least one special character (@#$%&!?)**."
         strength = "Weak"
     else:
-        message = f"## ✅ Your password is **strong**! 🎉"
+        message = f"## ✅ Your password is **strong**! 🎉 `{password}`"
         strength = "Strong"
 
     st.markdown(message)
@@ -65,7 +75,7 @@ if password:
 # Generate a strong password
 st.subheader("Generate a Strong Password")
 
-length = st.slider("Select Length:", 8, 20, 12)
+length = st.slider("Select Length:", 0, 167)
 
 # Generate button
 if st.button("Generate Password"):
