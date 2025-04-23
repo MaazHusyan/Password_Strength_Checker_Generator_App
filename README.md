@@ -1,1 +1,1 @@
-# 3rd project Password generator & strength checker App
+# 3rd project: Password generator & strength checker App
